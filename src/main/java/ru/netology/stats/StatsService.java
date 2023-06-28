@@ -4,15 +4,15 @@ public class StatsService {
     public long allSales(long[] sales) {
         long sum = 0;
         for (long i : sales) {
-            sum = sum + i;
+            sum += i;
         }
         return sum;
     }
 
     //так как средния значения могут быть дробными использовать параметр double
-    public double midSales(long[] sales) {
-
-        return (double) allSales(sales) / sales.length;
+    public double averageSales(long[] sales) {
+        double totalSales = allSales(sales);
+        return totalSales / sales.length;
     }
 
     public int maxSales(long[] sales) {
@@ -39,24 +39,26 @@ public class StatsService {
         return minMonth + 1;
     }
 
-    public long minMidSales(long[] sales) {
+    public long minAverageSales(long[] sales) {
 
-        int minMid = 0;
+        int minAverage = 0;
+        double average = averageSales(sales);
         for (double i : sales) {
-            if (i < midSales(sales)) {
-                minMid++;
+            if (i < average) {
+                minAverage++;
             }
         }
-        return minMid;
+        return minAverage;
     }
 
-    public long maxMidSales(long[] sales) {
-        long maxMid = 0;
+    public long maxAverageSales(long[] sales) {
+        long maxAverage = 0;
+        double average = averageSales(sales);
         for (long i : sales) {
-            if (i > midSales(sales)) {
-                maxMid++;
+            if (i > average) {
+                maxAverage++;
             }
         }
-        return maxMid;
+        return maxAverage;
     }
 }
